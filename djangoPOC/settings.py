@@ -26,7 +26,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '&z08fsh92r(8z2evv(6o=2rn=otua3+9j-3zjou3e!c29a4*j9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['10.227.100.71', 'localhost', 'pacific-badlands-12538.herokuapp.com']
 ALLOWED_HOSTS = ['*']
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'djangoPOC.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mysite/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'djangoPOC/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
