@@ -6,6 +6,6 @@ from django.template import engines
 
 
 def index(request):
-    context = {'latest_question_list': "latest_question_list"}
+    context = {'var1': "faraz"}
     return render(request, 'mysite/index.html', context)
     #return HttpResponse("You're at home page on question dededed")
