@@ -1,1 +1,72 @@
-<h1>This is supposed to be header </h1>
+{% load poll_extras %}
+
+<div class="site-top-banner">
+  <div>{% getEspot %} </div>
+</div>
+
+<header role="banner" ng-class="{'custom-header': $root.ChainSettings.chainIdentifierAbbr === 'fns' || $root.ChainSettings.chainIdentifierAbbr === 'gg'}">
+
+	<nav class="container" role="navigation" aria-label="Unsecure Header icons">
+		<ul class="flex-header-row text-center">
+			<li id="nav-open-button" class="header-icon animate-scale-active" ng-click="container.toggleMenu()">
+				<a>
+					<span class="hide">Toggle Icon</span>
+					<div id="nav-icon3" >
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+					<span class="header-text nav-toggle-text"></span>
+				</a>
+			</li>
+			<li class="header-icon animate-scale-active">
+
+      </li>
+			<li class="brand-logo header-icon-focus">
+
+
+      </li>
+			<li class="header-icon animate-scale-active">
+
+
+      </li>
+			<li class="header-icon animate-scale-active">
+				<a data-em="Header_ShoppingCart">
+					<span class="hide">Mini cart</span><mini-cart data-fly-out="false"></mini-cart>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="container" class="container" ng-if="::(DeviceSettings.deviceType !== 'maos')">
+		<div class="row" ng-controller="SearchController as search">
+			<div class="col-xs-12">
+				<form name="search.searchForm" class="single-field-form search-box" ng-submit="search.submitSearch(search.searchTerm)" novalidate action="#" onsubmit="return false;">
+					<div class="input-group box-phone">
+						<div class="input-group-addon btn-inline-prepend">
+							<i class="fa" ng-click="search.clearSearchTerm(search.searchForm, $event)" ng-class="{ 'fa-times-circle': !search.searchForm.searchField.$error.required, 'fa-search': search.searchForm.searchField.$error.required && !($root.ChainSettings.chainIdentifierAbbr === 'fns' || $root.ChainSettings.chainIdentifierAbbr === 'gg') }"></i>
+						</div>
+
+						<!-- if the flag for autosuggest is set true -->
+						<input ng-if="::(ChainSettings.autoSuggestionFlag == 'true')" id="searchField" name="searchField" type="search" title="search" autocomplete="off" autocorrect="off" spellcheck="false" class="form-control btn-inline-prepend-visible" placeholder="Search"
+							   ng-model="search.searchTerm" ng-model-options="{ allowInvalid: true }"
+							   uib-typeahead="autosuggest as autosuggest.term for autosuggest in search.getAutoSuggestion($viewValue, event)" typeahead-focus-first="false" typeahead-template-url="template/AutoSuggestion.Tpl.html"
+							   typeahead-on-select="search.submitAutoSearch($item, $model, $label)" typeahead-focus-on-select="false" typeahead-wait-ms="350" typeahead-focus close-on-submit required data-em="Header_Search" ng-mousedown="search.isSearchFocused = true" ng-focus="search.blurOnSearchSelect()" ng-change="search.clearEmptyContainer()">
+
+						<div class="input-group-addon btn-inline-submit" ng-if="!($root.ChainSettings.chainIdentifierAbbr === 'fns' || $root.ChainSettings.chainIdentifierAbbr === 'gg')">
+							<button data-em="Header_Search" id="headerSearchButton" type="submit" class="btn" ng-disabled="search.searchForm.searchField.$error.required">Go</button>
+						</div>
+						<div class="input-group-addon btn-inline-submit" ng-click="search.submitSearch(search.searchTerm)" ng-if="$root.ChainSettings.chainIdentifierAbbr === 'fns' || $root.ChainSettings.chainIdentifierAbbr === 'gg'">
+							<i class="fa search-icon"></i>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="global-ticker" ng-if="!header.hideBanner">
+
+</div>
